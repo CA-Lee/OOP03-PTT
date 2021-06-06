@@ -7,10 +7,15 @@
             "args": [
                 "-Iinclude",
                 "-g",
-                "src\\**.cpp",
                 "-o",
                 "bin\\ptt.exe",
-                "-static"
+                // "-static",
+                "src\\**.cpp",
+                "-ID:\\boost_1_76_0",
+                "-I\"D:/boost/include/boost-1_76\"",
+                "-L\"D:/boost/lib/\"",
+                "-lboost_filesystem-mgw8-mt-x64-1_76",
+                "-lboost_serialization-mgw8-mt-x64-1_76"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -31,6 +36,17 @@
             "type": "shell",
             "label": "copy",
             "command": "copy .\\resources\\* .\\bin\\",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [
+                // "delete"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "delete",
+            "command": "del .\\bin\\*",
             "options": {
                 "cwd": "${workspaceFolder}"
             }

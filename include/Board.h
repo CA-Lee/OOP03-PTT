@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include <list>
+#include "boost/serialization/access.hpp"
+#include "boost/serialization/list.hpp"
+#include "boost/serialization/string.hpp"
 #include "Post.h"
 
 using std::list;
@@ -14,8 +17,15 @@ class Board
     string id;
     int viewed;
 
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar &post_list &id;
+    }
+
 public:
-    Board();
+    Board() {}
     Board(string id);
 
     string get_id() const { return id; }

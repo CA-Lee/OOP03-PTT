@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "boost/serialization/access.hpp"
+#include "boost/serialization/string.hpp"
 
 using std::string;
 using std::vector;
@@ -18,8 +20,16 @@ struct Mail
 {
     string from;
     string content;
+    Mail() {}
     Mail(string a, string b)
         : from(a), content(b) {}
+
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar &from &content;
+    }
 };
 
 class User
@@ -29,10 +39,17 @@ class User
     vector<Post *> my_post_list;
     vector<Mail> mail_box;
 
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar &const_cast<string &>(id) & passwd &privilege &my_post_list &mail_box;
+    }
+
 public:
     const string id;
 
-    User();
+    User() {}
     User(string _username, string _password, Privilege _privilege);
 
     bool verify(string user_id, string _passwd)

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <string>
+#include "boost/serialization/string.hpp"
 #include "Board.h"
 
 using std::to_string;

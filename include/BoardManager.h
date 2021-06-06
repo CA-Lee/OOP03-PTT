@@ -1,8 +1,13 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "boost/archive/text_iarchive.hpp"
+#include "boost/archive/text_oarchive.hpp"
+#include "boost/serialization/vector.hpp"
+#include "boost/serialization/string.hpp"
 #include "User.h"
 #include "Admin.h"
+#include "Member.h"
 #include "Board.h"
 #include "Viewer.h"
 #include "Post.h"
@@ -20,6 +25,17 @@ class BoardManager
     User *current_user;
     Board *current_board;
     Post *current_post;
+
+    friend class boost::serialization::access;
+    template <class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar &board_list;
+        ar &user_list;
+        ar &current_user;
+        ar &current_board;
+        ar &current_post;
+    }
 
 public:
     BoardManager();
@@ -50,3 +66,5 @@ public:
     void send_mail(string to, string content);
     void check_mail();
 };
+
+BOOST_CLASS_TRACKING(BoardManager, boost::serialization::track_always)

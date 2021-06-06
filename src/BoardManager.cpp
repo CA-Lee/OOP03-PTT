@@ -1,5 +1,5 @@
-#include "BoardManager.h"
 #include <algorithm>
+#include "BoardManager.h"
 
 using std::find_if;
 
@@ -55,7 +55,7 @@ bool BoardManager::sign_up(string user_id, string password)
             return false;
         }
     }
-    user_list.push_back(User(user_id, password, Privilege::Member));
+    user_list.push_back(Member(user_id, password));
     return true;
 }
 
