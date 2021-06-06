@@ -12,6 +12,7 @@ class Board
 {
     list<Post> post_list;
     string id;
+    int viewed;
 
 public:
     Board();
@@ -22,4 +23,6 @@ public:
     list<Post>::iterator find_post(string post_id);
     Post *add_post(string title, string author, string content);
     void delete_post(string post_id);
+    void view() { viewed++; }
+    int get_view() const { return viewed; }
 };

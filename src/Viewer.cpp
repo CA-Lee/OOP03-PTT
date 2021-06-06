@@ -232,6 +232,7 @@ void Viewer::render_board_list()
 void Viewer::render_board(const Board &target_board)
 {
     cout << "Board: " << target_board.get_id() << endl
+         << "看板人氣: " << target_board.get_view() << endl
          << "|" << setw(5) << "id"
          << "|"
          << setw(50) << left << "title"

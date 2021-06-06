@@ -4,7 +4,7 @@
 
 using std::to_string;
 
-Board::Board(string id) : id(id)
+Board::Board(string id) : id(id), viewed(0)
 {
     post_list.push_back(
         Post(to_string(post_list.size()), "The very origin post", "root",

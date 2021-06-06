@@ -96,6 +96,7 @@ void BoardManager::select_board(string board_id)
     if (board != board_list.end())
     {
         current_board = &(*board);
+        current_board->view();
         viewer.render_board(*board);
     }
     else
