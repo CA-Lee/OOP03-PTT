@@ -50,6 +50,7 @@ Viewer::Viewer(BoardManager *bm) : board_manager(*bm)
 void Viewer::start()
 {
     render_menu();
+    render_help();
     bool cont = true;
     while (cont)
     {
@@ -127,15 +128,15 @@ bool Viewer::run_cmd(Command cmd)
         do
         {
 
-            cout << "[+/-/0]: ";
+            cout << "[push/pull/comment]: ";
             cin >> v;
-        } while (!(v == "+" || v == "-" || v == "0"));
+        } while (!(v == "push" || v == "pull" || v == "comment"));
         Weight w;
-        if (v == "+")
+        if (v == "push")
             w = Weight::push;
-        else if (v == "-")
+        else if (v == "pull")
             w = Weight::dislike;
-        else if (v == "0")
+        else if (v == "comment")
             w = Weight::comment;
         cout << "Enter comment: " << endl;
         string s = get_line();
