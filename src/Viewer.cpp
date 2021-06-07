@@ -86,11 +86,11 @@ bool Viewer::run_cmd(Command cmd)
     {
         board_manager.logout();
     }
-    else if (cmd.id == "board" && cmd.args.size() == 0)
+    else if (cmd.id == "boardlist" && cmd.args.size() == 0)
     {
         render_board_list();
     }
-    else if (cmd.id == "board" && cmd.args.size() == 1)
+    else if (cmd.id == "readboard" && cmd.args.size() == 1)
     {
         board_manager.select_board(cmd.args[0]);
     }
@@ -103,7 +103,7 @@ bool Viewer::run_cmd(Command cmd)
     {
         board_manager.delete_board(cmd.args[0]);
     }
-    else if (cmd.id == "post" && cmd.args.size() == 1)
+    else if (cmd.id == "readpost" && cmd.args.size() == 1)
     {
         board_manager.select_post(cmd.args[0]);
     }
@@ -152,7 +152,7 @@ bool Viewer::run_cmd(Command cmd)
         string s = get_multiline();
         board_manager.send_mail(cmd.args[0], s);
     }
-    else if (cmd.id == "mail" && cmd.args.size() == 0)
+    else if (cmd.id == "mailbox" && cmd.args.size() == 0)
     {
         board_manager.check_mail();
     }
@@ -169,21 +169,38 @@ bool Viewer::run_cmd(Command cmd)
 
 void Viewer::render_help()
 {
-    cout << "Command tutorial" << endl
+    cout << endl
+         << "Command tutorial" << endl
          << "================" << endl
-         << "logout" << endl
-         << "board" << endl
-         << "board [board id]" << endl
-         << "addboard [board id]" << endl
-         << "delboard [board id]" << endl
-         << "post [post id]" << endl
-         << "addpost" << endl
-         << "delpost [post id]" << endl
-         << "addcomment" << endl
-         << "exit" << endl
-         << "mail" << endl
-         << "mailto [user_id]" << endl
-         << "game" << endl;
+         << setw(20) << left << "logout"
+         << "登出" << endl
+         << setw(20) << left << "exit"
+         << "結束程式" << endl
+         << "-----------------" << endl
+         << setw(20) << left << "boardlist"
+         << "看板列表" << endl
+         << setw(20) << left << "readboard [board id]"
+         << "瀏覽看版" << endl
+         << setw(20) << left << "addboard [board id]"
+         << "新增看版" << endl
+         << setw(20) << left << "delboard [board id]"
+         << "刪除看版" << endl
+         << "-----------------" << endl
+         << setw(20) << left << "readpost [post id]"
+         << "瀏覽貼文" << endl
+         << setw(20) << left << "addpost"
+         << "新增貼文" << endl
+         << setw(20) << left << "delpost [post id]"
+         << "刪除貼文" << endl
+         << setw(20) << left << "addcomment"
+         << "新增留言" << endl
+         << "-----------------" << endl
+         << setw(20) << left << "mailbox"
+         << "瀏覽信箱" << endl
+         << setw(20) << left << "mailto [user_id]"
+         << "傳送訊息" << endl
+         << setw(20) << left << "game"
+         << "小遊戲" << endl;
 }
 
 void Viewer::render_menu()

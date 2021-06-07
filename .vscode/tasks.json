@@ -9,7 +9,7 @@
                 "-g",
                 "-o",
                 "bin\\ptt.exe",
-                // "-static",
+                "-static",
                 "src\\**.cpp",
                 "-ID:\\boost_1_76_0",
                 "-I\"D:/boost/include/boost-1_76\"",
