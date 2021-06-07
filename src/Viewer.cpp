@@ -122,6 +122,10 @@ bool Viewer::run_cmd(Command cmd)
     {
         board_manager.delete_post(cmd.args[0]);
     }
+    else if (cmd.id == "edpost" && cmd.args.size() == 1)
+    {
+        board_manager.edit_post(cmd.args[0]);
+    }
     else if (cmd.id == "addcomment" && cmd.args.size() == 0)
     {
         string v;
@@ -192,6 +196,8 @@ void Viewer::render_help()
          << "add new post" << endl
          << setw(20) << left << "delpost [post id]"
          << "delete a post" << endl
+         << setw(20) << left << "edpost [post id]"
+         << "edit your post" << endl
          << setw(20) << left << "addcomment"
          << "add comment to a post" << endl
          << "-----------------" << endl
@@ -242,7 +248,7 @@ void Viewer::render_board_list()
          << "==========" << endl;
     for (auto &board : board_manager.get_board_list())
     {
-        cout << board.get_id() << endl;
+        cout << "> " << board.get_id() << endl;
     }
 }
 
@@ -292,6 +298,19 @@ void Viewer::render_post(const Post &target_post)
         cout << c.author << ": ";
         cout << c.content << endl;
     }
+}
+
+void Viewer::render_edit_post(const Post &origin_post)
+{
+    cout << "New title (leave empty to keep origin `" << origin_post.get_title() << "`): ";
+    string newtitle = get_line();
+    if (newtitle == "")
+        newtitle = origin_post.get_title();
+    cout << "New content, exit with EOF (leave empty to keep origin):" << endl;
+    string new_content = get_multiline();
+    if (new_content == "")
+        new_content = origin_post.get_content();
+    board_manager.edit_post(origin_post.bsid, newtitle, new_content);
 }
 
 void Viewer::render_mail(const vector<Mail> mail_list)

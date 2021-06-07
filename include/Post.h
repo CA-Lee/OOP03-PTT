@@ -57,6 +57,11 @@ public:
     const string get_title() const { return title; }
     const string get_content() const { return content; }
     const vector<Comment> &get_comments() const { return comment_list; }
+    void edit(string _title, string _content)
+    {
+        title = _title;
+        content = _content;
+    }
 
     void add_comment(Comment &&c);
     int get_hot() const

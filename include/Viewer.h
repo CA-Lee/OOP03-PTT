@@ -31,6 +31,7 @@ public:
     void render_board_list();
     void render_board(const Board &target_board);
     void render_post(const Post &target_post);
+    void render_edit_post(const Post &origin_post);
     void render_mail(vector<Mail> mail_list);
 
     void render_login_success();

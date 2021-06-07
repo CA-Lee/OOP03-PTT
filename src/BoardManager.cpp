@@ -191,6 +191,60 @@ void BoardManager::delete_post(string post_id)
     }
 }
 
+void BoardManager::edit_post(string post_id)
+{
+    if (current_board != nullptr)
+    {
+        auto post = current_board->find_post(post_id);
+        if (post != current_board->get_post_list().end())
+        {
+            if (current_user->id == (*post).author_id)
+            {
+                viewer.render_edit_post(*post);
+            }
+            else
+            {
+                viewer.render_permission_denied();
+            }
+        }
+        else
+        {
+            viewer.render_post_not_found();
+        }
+    }
+    else
+    {
+        viewer.render_no_current_board();
+    }
+}
+
+void BoardManager::edit_post(string post_id, string title, string content)
+{
+    if (current_board != nullptr)
+    {
+        auto post = current_board->find_post(post_id);
+        if (post != current_board->get_post_list().end())
+        {
+            if (current_user->id == (*post).author_id)
+            {
+                (*post).edit(title, content);
+            }
+            else
+            {
+                viewer.render_permission_denied();
+            }
+        }
+        else
+        {
+            viewer.render_post_not_found();
+        }
+    }
+    else
+    {
+        viewer.render_no_current_board();
+    }
+}
+
 void BoardManager::add_comment(Weight w, string s)
 {
     if (current_post != nullptr)

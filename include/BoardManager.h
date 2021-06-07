@@ -60,6 +60,8 @@ public:
     void add_post(string board_id, string title, string content);
     void select_post(string post_id);
     void delete_post(string post_id);
+    void edit_post(string post_id);
+    void edit_post(string post_id, string title, string content);
 
     void add_comment(Weight w, string s);
 
