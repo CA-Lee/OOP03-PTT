@@ -173,34 +173,34 @@ void Viewer::render_help()
          << "Command tutorial" << endl
          << "================" << endl
          << setw(20) << left << "logout"
-         << "登出" << endl
+         << "logout from this account" << endl
          << setw(20) << left << "exit"
-         << "結束程式" << endl
+         << "exit program" << endl
          << "-----------------" << endl
          << setw(20) << left << "boardlist"
-         << "看板列表" << endl
+         << "view all board" << endl
          << setw(20) << left << "readboard [board id]"
-         << "瀏覽看版" << endl
+         << "enter one board" << endl
          << setw(20) << left << "addboard [board id]"
-         << "新增看版" << endl
+         << "add new board" << endl
          << setw(20) << left << "delboard [board id]"
-         << "刪除看版" << endl
+         << "delete a board" << endl
          << "-----------------" << endl
          << setw(20) << left << "readpost [post id]"
-         << "瀏覽貼文" << endl
+         << "read one post" << endl
          << setw(20) << left << "addpost"
-         << "新增貼文" << endl
+         << "add new post" << endl
          << setw(20) << left << "delpost [post id]"
-         << "刪除貼文" << endl
+         << "delete a post" << endl
          << setw(20) << left << "addcomment"
-         << "新增留言" << endl
+         << "add comment to a post" << endl
          << "-----------------" << endl
          << setw(20) << left << "mailbox"
-         << "瀏覽信箱" << endl
+         << "open mailbox" << endl
          << setw(20) << left << "mailto [user_id]"
-         << "傳送訊息" << endl
+         << "send mail to others" << endl
          << setw(20) << left << "game"
-         << "小遊戲" << endl;
+         << "play a game" << endl;
 }
 
 void Viewer::render_menu()
