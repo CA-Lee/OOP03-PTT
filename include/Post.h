@@ -59,4 +59,16 @@ public:
     const vector<Comment> &get_comments() const { return comment_list; }
 
     void add_comment(Comment &&c);
+    int get_hot() const
+    {
+        int h = 0;
+        for (auto &i : comment_list)
+        {
+            if (i.weight == Weight::push)
+                h++;
+            else if (i.weight == Weight::dislike)
+                h--;
+        }
+        return h;
+    }
 };

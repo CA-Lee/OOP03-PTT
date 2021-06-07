@@ -250,18 +250,20 @@ void Viewer::render_board(const Board &target_board)
 {
     cout << "Board: " << target_board.get_id() << endl
          << "看板人氣: " << target_board.get_view() << endl
+         << "|" << setw(4) << "推噓"
          << "|" << setw(5) << "id"
          << "|"
          << setw(50) << left << "title"
          << "|"
          << setw(15) << right << "author"
          << "|" << endl
-         << "|" << std::setfill('=') << setw(72) << "="
+         << "|" << std::setfill('=') << setw(77) << "="
          << "|" << endl
          << std::setfill(' ');
     for (auto &post : target_board.get_post_list())
     {
-        cout << "|" << setw(5) << post.bsid << "|"
+        cout << "|" << setw(4) << (post.get_hot() > 3 ? "爆" : to_string(post.get_hot()))
+             << "|" << setw(5) << post.bsid << "|"
              << setw(50) << left << post.get_title() << "|"
              << setw(15) << right << post.author_id << "|" << endl;
     }
